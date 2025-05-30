@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>R-Win Navbar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="WINGOG/WingoGame/wingo.css" type="text/css" media="all" />
+
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+
+
+<meta name="theme-color" content="#FFDEC2">
+
+
+<script defer type="module" src="https://cdn.jsdelivr.net/gh/royal450/Boost-Mediaa@main/lead.js"></script>
+</head>
+<body>
+<div class="AappoContsiner">
+
+<div class="App_b_container">
+  
+<div class="navbar">
+    <div class="icon-wrapper" onclick="elm">
+      <img src="https://img.icons8.com/ios-filled/100/000000/back.png" alt="Back" />
+    </div>
+
+    <div class="brand" onclick="showWinLossResult()">R-WIN</div>
+
+    <div class="icon-wrapper">
+      <img src="https://img.icons8.com/ios-filled/100/000000/help.png" alt="Help" />
+    </div>
+  </div>
+
+<div class="wallet-box">
+  <div class="wallet-header">
+    <div class="wallet-amount" id="balanceDisplay2"><span id="balanceDisplay">₹...</span><img src="https://img.icons8.com/ios-filled/34/000000/refresh.png" class="refresh-icon" onclick="refreshBalance()"/></div>
+    <div class="wallet-label">
+      <img src="https://img.icons8.com/fluency/20/wallet.png" class="wallet-img"/>
+      <span>Wallet balance</span>
+    </div>
+  </div>
+  
+  <div class="wallet-buttons">
+    <button class="btn withdraw">Withdraw</button>
+    <button class="btn deposit">Deposit</button>
+  </div>
+</div>
+<div class="main-wrap">
+  <div class="notice-box">
+    <div class="notice-left">
+      <img src="https://img.icons8.com/ios-filled/30/fa314a/speaker.png" alt="speaker" />
+    </div>
+    <div class="notice-message">
+      
+      Welcome To R-Win Let's Start Winning 💰
+      
+    </div>
+    <button class="notice-btn">
+      <img src="https://img.icons8.com/ios-glyphs/20/ffffff/water.png" />
+      Detail
+    </button>
+  </div>
+</div>
+<div class="game-select-wrap">
+ 
+ 
+ 
+  <div class="game-selector">
+
+
+    <div class="game-box" id="Wingo30SecBox">
+      <img class="ddd" src="https://img.icons8.com/ios-filled/40/9e9e9e/clock--v1.png" alt="1m" />
+   
+   
+      <div class="game-text">
+        <div class="game-title">Win Go</div>
+        <div class="game-time">30s</div>
+      </div>
+    </div>
+  
+  
+    <div class="game-box" id="Wingo30SecBox">
+      <img src="https://img.icons8.com/ios-filled/40/9e9e9e/clock--v1.png" alt="1m" />
+   
+   
+      <div class="game-text">
+        <div class="game-title">Win Go</div>
+        <div class="game-time">1M</div>
+      </div>
+    </div>
+  
+  
+    <div class="game-box" id="Wingo30SecBox">
+      <img src="https://img.icons8.com/ios-filled/40/9e9e9e/clock--v1.png" alt="1m" />
+   
+   
+      <div class="game-text">
+        <div class="game-title">Win Go</div>
+        <div class="game-time">5M</div>
+      </div>
+    </div>
+  
+  
+    <div class="game-box" id="Wingo30SecBox">
+      <img src="https://img.icons8.com/ios-filled/40/9e9e9e/clock--v1.png" alt="1m" />
+   
+   
+      <div class="game-text">
+        <div class="game-title">Win Go</div>
+        <div class="game-time">10M</div>
+      </div>
+    </div>
+  
+  
+
+    
+    
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="ticket-container">
+
+ <div class="card_container_main">
+    <div class="card_dice">0</div>
+    <div class="card_dice">5</div>
+  </div>
+  
+  <div class="ticket-box">
+    <div class="ticket-left">
+      <div class="how-to-play">
+        <span class="icon">💬</span> How to play
+      </div>
+      <div class="game-title">win go 1M</div>
+      <div class="goti-row">
+
+  <p class="textBoxn" style="font-size: .6em; font-weight: 900;">Color , B/S >> 2x</p> | 
+  <p class="textBoxn" style="font-size: .6em; font-weight: 999;">Number >> 10X </p>  
+  <p class="textBoxn"></p>  
+   
+           </div>
+    </div>
+    
+    <div class="ticket-divider"></div>
+    
+    <div class="ticket-right">
+      <div class="timer-label">Time remaining</div>
+   
+      <div class="time-boxes">
+        <div class="time-digit">0</div>
+        <div class="time-digit">0</div>
+        <div class="time-digit">:</div>
+        <div class="time-digit">1</div>
+        <div class="time-digit">9</div>
+      </div>
+   
+   
+   
+   
+      <div class="game-id">202505020066156</div>
+    </div>
+ 
+ 
+ 
+  </div>
+</div>
+
+<div class="container_wingo30">
+        <div class="game-container_wingo30">
+            <div class="color-options_wingo30">
+                <div class="color-option_wingo30 green_wingo30" style="background: #22c55e;">Green</div>
+                <div class="color-option_wingo30 violet_wingo30" style="background: #c084fc;">Violet</div>
+                <div class="color-option_wingo30 red_wingo30" style="background: #f87171;">Red</div>
+            </div>
+            
+            <div class="ball-container_wingo30">
+                <div class="ball_wingo30 ball-0_wingo30" id="betToggleBtn" onclick="setupBetOnElement()">0</div>
+                <div class="ball_wingo30 ball-1_wingo30">1</div>
+                <div class="ball_wingo30 ball-2_wingo30">2</div>
+                <div class="ball_wingo30 ball-3_wingo30">3</div>
+                <div class="ball_wingo30 ball-4_wingo30">4</div>
+                <div class="ball_wingo30 ball-5_wingo30">5</div>
+                <div class="ball_wingo30 ball-6_wingo30">6</div>
+                <div class="ball_wingo30 ball-7_wingo30">7</div>
+                <div class="ball_wingo30 ball-8_wingo30">8</div>
+                <div class="ball_wingo30 ball-9_wingo30">9</div>
+            </div>
+            
+            <div class="multiplier-options_wingo30">
+                <div class="random-btn_wingo30">Random</div>
+                <div class="multiplier_wingo30 active">X1</div>
+                <div class="multiplier_wingo30 inactive">X5</div>
+                <div class="multiplier_wingo30 inactive">X10</div>
+                <div class="multiplier_wingo30 inactive">X20</div>
+                <div class="multiplier_wingo30 inactive">X50</div>
+                <div class="multiplier_wingo30 inactive">X100</div>
+            </div>
+            
+            <div class="big-small-container_wingo30">
+                <div class="big-option_wingo30">Big</div>
+                <div class="small-option_wingo30">Small</div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="gh-container">
+  
+  <div class="Tab_historyalallBoxess">
+  
+  
+    <div class="gh-tabs">
+      <div class="gh-tab active">Game history</div>
+      <div class="gh-tab" style="text-indent: 1vmin;">••••••••••••••••</div>
+      <div class="gh-tab">My history</div>
+    </div>
+
+    <div class="gh-table">
+   
+      <div class="gh-table-header">
+        <div class="gh-header-cell gh-period">Period</div>
+        <div class="gh-header-cell gh-number">Number</div>
+        <div class="gh-header-cell gh-size">Big Small</div>
+        <div class="gh-header-cell gh-color">Color</div>
+      </div>
+      
+  
+
+<!-- Group 1 -->
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010180</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-1">1</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color"><div class="gh-dot gh-dot-green"></div></div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010179</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-8">8</div>
+  <div class="gh-cell gh-size">Big</div>
+  <div class="gh-cell gh-color"><div class="gh-dot gh-dot-red"></div></div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010178</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-1">1</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color"><div class="gh-dot gh-dot-green"></div></div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010177</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-0">0</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color">
+    <div class="gh-dots">
+      <div class="gh-dot gh-dot-red"></div>
+      <div class="gh-dot gh-dot-purple"></div>
+    </div>
+  </div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010176</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-0">0</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color">
+    <div class="gh-dots">
+      <div class="gh-dot gh-dot-red"></div>
+      <div class="gh-dot gh-dot-purple"></div>
+    </div>
+  </div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010175</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-1">1</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color"><div class="gh-dot gh-dot-green"></div></div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010174</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-0">0</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color">
+    <div class="gh-dots">
+      <div class="gh-dot gh-dot-red"></div>
+      <div class="gh-dot gh-dot-purple"></div>
+    </div>
+  </div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010173</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-0">0</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color">
+    <div class="gh-dots">
+      <div class="gh-dot gh-dot-red"></div>
+      <div class="gh-dot gh-dot-purple"></div>
+    </div>
+  </div>
+</div>
+
+<div class="gh-row">
+  <div class="gh-cell gh-period">20250524100010172</div>
+  <div class="gh-cell gh-number gh-num-value gh-num-0">0</div>
+  <div class="gh-cell gh-size">Small</div>
+  <div class="gh-cell gh-color">
+    <div class="gh-dots">
+      <div class="gh-dot gh-dot-red"></div>
+      <div class="gh-dot gh-dot-purple"></div>
+    </div>
+  </div>
+</div>
+
+
+  
+   
+   
+   
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="gh-pagination">
+      <button class="gh-page-btn prev">&lt;</button>
+      <div class="gh-page-info">1/9045</div>
+      <button class="gh-page-btn next">&gt;</button>
+    </div>
+  
+  </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<button class="custom-bet-btn" onclick="setupBetOnElement(this)">Red</button>
+    <button class="custom-bet-btn" onclick="setupBetOnElement(this)" style="background-color: #2196F3;">Blue</button>
+    <button class="custom-bet-btn" onclick="setupBetOnElement(this)" style="background-color: #ff9800;">Orange</button>
+
+    <!-- Toast Message Container -->
+    <div class="bet-notification" id="betNotification">
+        <div class="bet-toast" id="betToast">Your bet is successful! 🎉</div>
+    </div>
+
+<div class="bet-selector-container" id="betSelectorContainer">
+        <div class="bet-header" id="betHeader">
+            <h1 class="bet-header-title">R-WIN - Wingo 1 Minutes Play</h1><br />
+            <div class="bet-selection-preview" id="betSelectionPreview"></div>
+        </div>
+       
+       
+
+ <div class="bet-arrow" id="betArrow"></div>
+        <div class="bet-selection-panel">
+            <button class="bet-main-btn" id="betMainBtn">Select Option</button>
+            
+            <div class="bet-control-row">
+                <div class="bet-label">Balance</div>
+                <div class="bet-option-group">
+                    <button class="bet-opt-btn selected" data-value="1">1</button>
+                    <button class="bet-opt-btn" data-value="10">10</button>
+                    <button class="bet-opt-btn" data-value="100">100</button>
+                    <button class="bet-opt-btn" data-value="1000000">10000</button>
+                </div>
+            </div>
+            
+            <div class="bet-control-row">
+                <div class="bet-label">Quantity</div>
+                <div class="bet-qty-controls">
+                    <button class="bet-qty-btn minus">-</button>
+                    <div class="bet-qty-display">1</div>
+                    <button class="bet-qty-btn plus">+</button>
+                </div>
+            </div>
+            
+            <div class="bet-multiplier-group">
+                <button class="bet-mult-btn selected" data-value="1">X1</button>
+                <button class="bet-mult-btn" data-value="5">X5</button>
+                <button class="bet-mult-btn" data-value="10">X10</button>
+                <button class="bet-mult-btn" data-value="20">X20</button>
+                <button class="bet-mult-btn" data-value="50">X50</button>
+                <button class="bet-mult-btn" data-value="100">X100</button>
+            </div>
+            
+            <div class="bet-agreement-row">
+                <div class="bet-checkbox" id="betCheckbox">
+                    <span class="bet-checkmark">✓</span>
+                </div>
+                <div class="bet-agreement-text">
+                    I agree <a href="#" class="bet-rules-link">《Pre-sale rules》</a>
+                </div>
+            </div>
+            
+            <div class="bet-action-btns">
+                <button class="bet-cancel-btn" id="betCancelBtn">Cancel</button>
+                <button class="bet-confirm-btn" id="betConfirmBtn">Total amount ₹1.00</button>
+            </div>
+        </div>
+    </div>
+
+<!---Bro this is a Win Box History if you are Display This box allow "OverlayLayouts" apply display: flex   --->
+ <div class="OverlayLayouts">
+    
+  <div class="data_w_con">
+    
+  <span class="SpantagWin">
+    
+    <img id="winbox_WIN" src="WINGOG/Winlogo.png" alt="WINBOX" />
+    
+    <span class="textStylingOnly">Congratulations</span>
+    
+    
+    <span class="textStylingOnly" id="Peroid_Number">Period 1M Wingo: 20250575001</span>
+    
+    <span class="textStylingOnly" id="uselesTextOnly">Bonus</span>
+  
+    <span class="textStylingOnly" id="AMOUNT">₹8207.90</span>
+
+      
+     <span class="textStylingOnly" id="useless">Result:</span> 
+      
+      
+      <span class="Devilresult" id="MainResultBox">
+        
+      <span class="ResultsValue" id="Color_value">Green</span>
+      <span class="ResultsValue" id="Number_Value">9</span>
+      <span class="ResultsValue" id="Size_Value">Big</span>
+        
+        
+        
+        
+      </span>
+      
+      
+      
+      
+    </div>
+
+
+
+
+
+  </span>
+    </div>
+  
+  </div>
+  
+ <div class="OverlayLayouts_LOSE">
+  <div class="data_w_con_LOSE">
+  <span class="SpantagWin_LOSE">
+    
+    <img id="winbox_WIN_LOSE" src="WINGOG/Lose_Box.png" alt="WINBOX" />
+    
+<span class="textStylingOnlyClosebtn_LOSE">3s Automatically Closed</span>
+    
+    
+    <span class="textStylingOnly_LOSE" id="Peroid_Number_LOSE">Period 1M Wingo: 20250575001</span>
+  
+      
+     <span class="textStylingOnly_LOSE" id="useless_LOSE">Result:</span> 
+      
+      
+      <span class="Devilresult_LOSE" id="MainResultBox_LOSE">
+        
+      <span class="ResultsValue_LOSE" id="Color_value_LOSE">Green</span>
+      <span class="ResultsValue_LOSE" id="Number_Value_LOSE">9</span>
+      <span class="ResultsValue_LOSE" id="Size_Value_LOSE">Big</span>
+        
+        
+        
+        
+      </span>
+      
+      
+      
+      
+    </div>
+
+
+
+
+
+  </span>
+    </div>
+  
+  </div>
+  
+  <script>
+  // Function to activate box
+  function activateBox(box) {
+    // Remove 'active' class from all boxes
+    document.querySelectorAll('.game-box').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    
+    // Add 'active' class to clicked box
+    box.classList.add('active');
+    
+    // Save to localStorage
+    localStorage.setItem('activeGameBox', box.getAttribute('id'));
+  }
+  
+  // Attach click listener to all game-box elements
+  document.querySelectorAll('.game-box').forEach(function(box) {
+    box.addEventListener('click', function() {
+      activateBox(box);
+    });
+  });
+  
+  // On load: set previously active box
+  window.addEventListener('DOMContentLoaded', function() {
+    var savedBoxId = localStorage.getItem('activeGameBox');
+    if (savedBoxId) {
+      var savedBox = document.getElementById(savedBoxId);
+      if (savedBox) {
+        activateBox(savedBox);
+      }
+    }
+  });
+</script>
+
+
+<script type="module" src="/WINGOG//WingoGame/WingoGame/1w.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>

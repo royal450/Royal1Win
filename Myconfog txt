@@ -1,0 +1,175 @@
+bro ye sab sahi kaam kar rha hai NO ISSUe
+
+Balance Fetch ho rhe hai Indian style me
+
+betting logic bilkul sahi hai Win hone par amount bhi add ho rhe ha
+
+Betting ki laugic sahi hsi 
+
+ex 
+0 to 4 >> small 
+5 to 4 >> big 
+
+color logic bhi sahi hsin
+
+0 > violet + red
+1 > green 
+2 >> Red 
+3 >> green
+4 >> red
+5 >> green + violet
+6 >.red
+7 >> green
+8 >> red 
+9 >> green
+
+big / small bhi sahi hai 
+
+
+history ban rhi hai 
+
+
+
+bet lag rgi hai peroid fetch ho rhr hai 
+
+
+***import issue Now Fixed it please****
+
+
+
+• bro history update nahi ho rhi hai 
+
+• 6 7 8 9 >.me color appmy nahi ho rhe hai 
+
+• history Increase order ne upend nahi ho rha hai like
+
+EX >> aisa homa chahiye
+
+
+20256874610 append hoga top se latest result top me 
+20256874609
+20256874608
+20256874607
+20256874606
+20256874605
+
+
+
+Loading time bahut jyada hai histry fetch home me samay na lage 
+isliye tum localstorsge ka full use ksro history humesa loaded rhega dont relaosd 
+on value ka use karo taki peroid change hote hi histry update ho jaye or window
+liad ho ya close histry remove na ho okay 
+
+
+peroid use acrive ho ya ma ho har minit genrate hoga Har minit 0 hote hi naya peroid turant update ho jana chahiye 
+and 
+
+
+
+[*** Verry Varry Import **]
+
+40 second pehle hi result genrate kar do taki 0 hote hi sabko turant show ho jaye or period change ho jaye ya window refress ho jayetaki nya game suru ho jsye 
+
+0 hote hi User ko uska result dikhna chahiye Chahe vo Win kiya Ya fir loss uska result usko milna chahiye 
+
+agar loss kiya to sirf result show 
+
+
+WIN KARNE PAR uska balance bhi update karo 
+
+
+
+
+
+FULL CODE DO MAI COPPPY KAR LUNGA YEHI PAR FULL CODE LIKHO
+mai coppy kar lunga 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+are yar kyo pagal ho rha hai tu 🤣 function call to kar yar 
+
+
+iss tarah
+
+window.setupBetOnElement = setupBetOnElement;
+window.setOnBetElement = setOnBetElement;
+window.placeBet = placeBet;
+window.showCustomResult = showCustomResult;
+window.generateGameResult = generateGameResult;
+window.start_overlay = start_overlay;
+window.initializeGame = initializeGame;
+window.formatIndianNumber = formatIndianNumber;
+window.refreshBalance = refreshBalance;
+window.showWinLossResult = showWinLossResult;
+
+
+
+bhai please yar iss bar tu apna best de dena 1000% 
+sari chize pegle xhek kar period update kar har minit yar 1 add karna jaruri hai 
+tabhi to naye peroid par user bet laga payega sara chiz 
+sahi kar bhai please 
+
+iss bar tu full code de 30000 line ka har chix chek kar 
+uskr bad jo elm na mile creat kar 
+period me har minit 1 add kar Isure kar 0 hote hi history or balance turant update ho agar user win kiya hau 
+
+
+console me print kar win ya loss result sab achhe se bna 
+
+
+
+okay reolit bro isd bar 3000 line full code mai coppy kar lunga 
+
+
+
+
+
+
+
+
+
+
+
+
+

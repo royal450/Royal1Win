@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Gaming Control Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: scroll;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .admin-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .admin-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .admin-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .admin-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        .result-override {
+            text-align: center;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .number-btn {
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .number-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
+        }
+
+        .number-btn.selected {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            transform: scale(1.1);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .betting-stats {
+            grid-column: 1 / -1;
+        }
+
+        .bet-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .bet-table th,
+        .bet-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .bet-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+
+        .bet-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online {
+            background-color: #00b894;
+        }
+
+        .status-offline {
+            background-color: #e74c3c;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: linear-gradient(135deg, #00b894, #00a085);
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .current-period {
+            background: linear-gradient(135deg, #fdcb6e, #e84393);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .user-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .user-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .number-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>🎮 Gaming Admin Panel</h1>
+            <p>Complete control over game results and user statistics</p>
+            <div class="current-period" id="currentPeriod">Current Period: Loading...</div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="admin-grid">
+            <!-- Result Override Card -->
+            <div class="admin-card">
+                <h2 class="card-title">🎯 Result Override</h2>
+                <div class="result-override">
+                    <p style="margin-bottom: 15px; color: #7f8c8d;">Set winning number (0-9)</p>
+                    
+                    <div class="number-grid">
+                        <button class="number-btn" onclick="selectNumber(0)">0</button>
+                        <button class="number-btn" onclick="selectNumber(1)">1</button>
+                        <button class="number-btn" onclick="selectNumber(2)">2</button>
+                        <button class="number-btn" onclick="selectNumber(3)">3</button>
+                        <button class="number-btn" onclick="selectNumber(4)">4</button>
+                        <button class="number-btn" onclick="selectNumber(5)">5</button>
+                        <button class="number-btn" onclick="selectNumber(6)">6</button>
+                        <button class="number-btn" onclick="selectNumber(7)">7</button>
+                        <button class="number-btn" onclick="selectNumber(8)">8</button>
+                        <button class="number-btn" onclick="selectNumber(9)">9</button>
+                    </div>
+
+                    <div id="selectedResult" style="margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 8px; display: none;">
+                        <strong>Selected: </strong>
+                        <span id="resultPreview"></span>
+                    </div>
+
+                    <div class="control-buttons">
+                        <button class="btn btn-success" onclick="setResult()">Set Result</button>
+                        <button class="btn btn-danger" onclick="clearResult()">Clear Override</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Statistics -->
+            <div class="admin-card">
+                <h2 class="card-title">📊 Live Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalBets">0</div>
+                        <div class="stat-label">Total Bets</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalAmount">₹0</div>
+                        <div class="stat-label">Total Amount</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="activeUsers">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="timeRemaining">60s</div>
+                        <div class="stat-label">Time Remaining</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Betting Statistics -->
+        <div class="admin-card betting-stats">
+            <h2 class="card-title">💰 Current Period Betting Analysis</h2>
+            
+            <table class="bet-table">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Total Bets</th>
+                        <th>Amount</th>
+                        <th>Color</th>
+                        <th>Total Bets</th>
+                        <th>Amount</th>
+                        <th>Size</th>
+                        <th>Total Bets</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="bettingTable">
+                    <!-- Dynamic content -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Active Users -->
+        <div class="admin-card">
+            <h2 class="card-title">👥 Active Users</h2>
+            <div class="user-list" id="userList">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="admin-footer">
+            <p>© 2025 Gaming Admin Panel - Real-time Control Center</p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getDatabase, ref, set, get, onValue, update } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBuioOF7DCq-qIoa1D6ZyZbrAVeGjbfv3Y",
+            authDomain: "daily-campaign-king.firebaseapp.com",
+            databaseURL: "https://daily-campaign-king-default-rtdb.firebaseio.com",
+            projectId: "daily-campaign-king",
+            storageBucket: "daily-campaign-king.appspot.com",
+            messagingSenderId: "1089692268059",
+            appId: "1:1089692268059:web:eddde94901436202576abe",
+            measurementId: "G-6PXV3B5322"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // Global variables
+        let selectedNumber = null;
+        let currentGamePeriod = null;
+        let bettingStats = {
+            numbers: {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0},
+            colors: { red: 0, green: 0, violet: 0 },
+            bigSmall: { big: 0, small: 0 }
+        };
+
+        // Number color mapping
+        const numberColors = {
+            0: { colors: ['red', 'violet'], size: 'small' },
+            1: { colors: ['green'], size: 'small' },
+            2: { colors: ['red'], size: 'small' },
+            3: { colors: ['green'], size: 'small' },
+            4: { colors: ['red'], size: 'small' },
+            5: { colors: ['green', 'violet'], size: 'big' },
+            6: { colors: ['red'], size: 'big' },
+            7: { colors: ['green'], size: 'big' },
+            8: { colors: ['red'], size: 'big' },
+            9: { colors: ['green'], size: 'big' }
+        };
+
+        // Initialize admin panel
+        window.onload = function() {
+            setupListeners();
+            loadCurrentPeriod();
+            updateStats();
+        };
+
+        // Select number function
+        window.selectNumber = function(number) {
+            selectedNumber = number;
+            
+            // Update UI
+            document.querySelectorAll('.number-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.querySelector(`[onclick="selectNumber(${number})"]`).classList.add('selected');
+            
+            // Show preview
+            const colorData = numberColors[number];
+            const preview = `Number: ${number} | Colors: ${colorData.colors.join(', ')} | Size: ${colorData.size}`;
+            
+            document.getElementById('selectedResult').style.display = 'block';
+            document.getElementById('resultPreview').textContent = preview;
+        };
+
+        // Set result function
+        window.setResult = async function() {
+            if (selectedNumber === null) {
+                showToast('Please select a number first!', 'error');
+                return;
+            }
+
+            if (!currentGamePeriod) {
+                showToast('Current period not loaded!', 'error');
+                return;
+            }
+
+            try {
+                const adminOverrideRef = ref(db, `adminOverride/${currentGamePeriod}`);
+                const overrideData = {
+                    number: selectedNumber,
+                    period: currentGamePeriod,
+                    timestamp: Date.now(),
+                    setBy: 'admin',
+                    active: true
+                };
+                
+                await set(adminOverrideRef, overrideData);
+                
+                // Verify it was set
+                const verifyRef = ref(db, `adminOverride/${currentGamePeriod}`);
+                const verifySnapshot = await get(verifyRef);
+                
+                if (verifySnapshot.exists()) {
+                    console.log('✅ ADMIN OVERRIDE CONFIRMED:', verifySnapshot.val());
+                    showToast(`🔥 ADMIN RESULT SET: Number ${selectedNumber} for period ${currentGamePeriod}`, 'success');
+                    
+                    // Also log to help with debugging
+                    console.log('%c 🔥 ADMIN OVERRIDE SET SUCCESSFULLY 🔥 ', 'background: #f00; color: #fff; font-size: 16px; font-weight: bold;');
+                    console.log('Override data:', overrideData);
+                    
+                    // Update the preview to show it's been set
+                    document.getElementById('resultPreview').innerHTML = `
+                        <strong style="color: #e74c3c;">ADMIN OVERRIDE ACTIVE!</strong><br>
+                        Number: ${selectedNumber} | Period: ${currentGamePeriod}
+                    `;
+                } else {
+                    throw new Error('Failed to verify admin override was set');
+                }
+                
+            } catch (error) {
+                console.error('Error setting result:', error);
+                showToast('Error setting result!', 'error');
+            }
+        };
+
+        // Clear result function
+        window.clearResult = async function() {
+            if (!currentGamePeriod) {
+                showToast('Current period not loaded!', 'error');
+                return;
+            }
+
+            try {
+                const adminOverrideRef = ref(db, `adminOverride/${currentGamePeriod}`);
+                await set(adminOverrideRef, null);
+                
+                // Clear UI
+                selectedNumber = null;
+                document.querySelectorAll('.number-btn').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+                document.getElementById('selectedResult').style.display = 'none';
+
+                showToast('Result override cleared!', 'success');
+            } catch (error) {
+                console.error('Error clearing result:', error);
+                showToast('Error clearing result!', 'error');
+            }
+        };
+
+        // Setup Firebase listeners
+        function setupListeners() {
+            // Listen to global period changes
+            const globalPeriodRef = ref(db, 'globalGameState/currentPeriod');
+            onValue(globalPeriodRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    currentGamePeriod = snapshot.val();
+                    document.getElementById('currentPeriod').textContent = `Current Period: ${currentGamePeriod}`;
+                    loadPeriodBets();
+                }
+            });
+
+            // Listen to timer updates
+            const globalTimerRef = ref(db, 'globalGameTimer');
+            onValue(globalTimerRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    updateTimer(snapshot.val());
+                }
+            });
+        }
+
+        // Load current period
+        async function loadCurrentPeriod() {
+            try {
+                const globalPeriodRef = ref(db, 'globalGameState/currentPeriod');
+                const snapshot = await get(globalPeriodRef);
+                
+                if (snapshot.exists()) {
+                    currentGamePeriod = snapshot.val();
+                    document.getElementById('currentPeriod').textContent = `Current Period: ${currentGamePeriod}`;
+                    loadPeriodBets();
+                }
+            } catch (error) {
+                console.error('Error loading current period:', error);
+            }
+        }
+
+        // Load period bets
+        async function loadPeriodBets() {
+            if (!currentGamePeriod) return;
+
+            try {
+                const betsRef = ref(db, `CurrentGameBets/${currentGamePeriod}`);
+                onValue(betsRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const allBets = snapshot.val();
+                        calculateBettingStats(allBets);
+                        updateBettingTable();
+                        updateUserList(allBets);
+                    } else {
+                        // Reset stats if no bets
+                        bettingStats = {
+                            numbers: {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0},
+                            colors: { red: 0, green: 0, violet: 0 },
+                            bigSmall: { big: 0, small: 0 }
+                        };
+                        updateBettingTable();
+                        updateUserList({});
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading period bets:', error);
+            }
+        }
+
+        // Calculate betting statistics
+        function calculateBettingStats(allBets) {
+            // Reset stats
+            bettingStats = {
+                numbers: {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0},
+                colors: { red: 0, green: 0, violet: 0 },
+                bigSmall: { big: 0, small: 0 }
+            };
+
+            let totalBets = 0;
+            let totalAmount = 0;
+
+            for (const userId in allBets) {
+                const userBets = allBets[userId];
+                for (const betId in userBets) {
+                    const bet = userBets[betId];
+                    totalBets++;
+                    totalAmount += bet.user_total_amount;
+
+                    if (bet.bet_type === 'number') {
+                        const number = parseInt(bet.user_selected_numbers);
+                        if (!isNaN(number) && number >= 0 && number <= 9) {
+                            bettingStats.numbers[number] += bet.user_total_amount;
+                        }
+                    } else if (bet.bet_type === 'color') {
+                        const color = bet.user_selected_color.toLowerCase();
+                        if (color in bettingStats.colors) {
+                            bettingStats.colors[color] += bet.user_total_amount;
+                        }
+                    } else if (bet.bet_type === 'bigSmall') {
+                        const type = bet.user_selected_bigSmall.toLowerCase();
+                        if (type in bettingStats.bigSmall) {
+                            bettingStats.bigSmall[type] += bet.user_total_amount;
+                        }
+                    }
+                }
+            }
+
+            // Update stats display
+            document.getElementById('totalBets').textContent = totalBets;
+            document.getElementById('totalAmount').textContent = `₹${totalAmount.toLocaleString('en-IN')}`;
+            document.getElementById('activeUsers').textContent = Object.keys(allBets).length;
+        }
+
+        // Update betting table
+        function updateBettingTable() {
+            const tableBody = document.getElementById('bettingTable');
+            tableBody.innerHTML = '';
+
+            for (let i = 0; i <= 9; i++) {
+                const row = document.createElement('tr');
+                const colorData = numberColors[i];
+                
+                row.innerHTML = `
+                    <td style="font-weight: bold; color: #2c3e50;">${i}</td>
+                    <td>${Object.values(bettingStats.numbers).reduce((a, b) => a + b, 0) > 0 ? Math.round((bettingStats.numbers[i] / Object.values(bettingStats.numbers).reduce((a, b) => a + b, 0)) * 100) : 0}%</td>
+                    <td>₹${bettingStats.numbers[i].toLocaleString('en-IN')}</td>
+                    <td style="color: ${colorData.colors[0]}; font-weight: bold;">${colorData.colors.join(', ')}</td>
+                    <td>${i <= 4 ? Math.round((bettingStats.colors.red / (bettingStats.colors.red + bettingStats.colors.green + bettingStats.colors.violet)) * 100) || 0 : Math.round((bettingStats.colors.green / (bettingStats.colors.red + bettingStats.colors.green + bettingStats.colors.violet)) * 100) || 0}%</td>
+                    <td>₹${i <= 4 ? bettingStats.colors.red.toLocaleString('en-IN') : bettingStats.colors.green.toLocaleString('en-IN')}</td>
+                    <td style="font-weight: bold;">${colorData.size}</td>
+                    <td>${colorData.size === 'small' ? Math.round((bettingStats.bigSmall.small / (bettingStats.bigSmall.small + bettingStats.bigSmall.big)) * 100) || 0 : Math.round((bettingStats.bigSmall.big / (bettingStats.bigSmall.small + bettingStats.bigSmall.big)) * 100) || 0}%</td>
+                    <td>₹${colorData.size === 'small' ? bettingStats.bigSmall.small.toLocaleString('en-IN') : bettingStats.bigSmall.big.toLocaleString('en-IN')}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Update user list
+        function updateUserList(allBets) {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+            if (Object.keys(allBets).length === 0) {
+                userList.innerHTML = '<div style="text-align: center; color: #7f8c8d; padding: 20px;">No active users</div>';
+                return;
+            }
+
+            for (const userId in allBets) {
+                const userBets = Object.values(allBets[userId]);
+                const totalAmount = userBets.reduce((sum, bet) => sum + bet.user_total_amount, 0);
+                
+                const userItem = document.createElement('div');
+                userItem.className = 'user-item';
+                userItem.innerHTML = `
+                    <div>
+                        <span class="status-indicator status-online"></span>
+                        <strong>${userId.substring(0, 8)}...</strong>
+                    </div>
+                    <div>
+                        <span style="color: #7f8c8d;">${userBets.length} bets</span> |
+                        <span style="color: #e74c3c; font-weight: bold;">₹${totalAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                `;
+                
+                userList.appendChild(userItem);
+            }
+        }
+
+        // Update timer
+        function updateTimer(timerData) {
+            if (!timerData.cycleStartTime) return;
+
+            const now = Date.now();
+            const elapsed = (now - timerData.cycleStartTime) % 60000; // 1 minute cycle
+            const remaining = Math.ceil((60000 - elapsed) / 1000);
+            
+            document.getElementById('timeRemaining').textContent = `${remaining}s`;
+        }
+
+        // Update stats periodically
+        function updateStats() {
+            // This function can be expanded for real-time updates
+            setTimeout(updateStats, 5000); // Update every 5 seconds
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            
+            document.getElementById('toastContainer').appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

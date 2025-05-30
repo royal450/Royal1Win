@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoyalWin Login</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      background-color: #222;
+      color: #fff;
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: #1a1a1a;
+      border-bottom: 1px solid #2d2d2d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
+    
+    .back-btn {
+      width: 32px;
+      color: #fff;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    
+    .country-flag {
+      width: 32px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .country-flag img {
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+    }
+    
+    .banner {
+      background-color: #f8a51b;
+      padding: 15px 20px;
+    }
+    
+    .banner h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .banner p {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    .container {
+      padding: 20px;
+    }
+    
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    
+    .title-icon {
+      background-color: #f8a51b;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+    
+    .title {
+      color: #f8a51b;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .divider {
+      width: 100%;
+      border-bottom: 1px solid #333;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    
+    .form-icon {
+      background-color: #f8a51b;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+    }
+    
+    .phone-input {
+      display: flex;
+    }
+    
+    .country-code {
+      width: 25%;
+      margin-right: 8px;
+      position: relative;
+    }
+    
+    .country-code select {
+      width: 100%;
+      height: 50px;
+      background-color: #2d2d2d;
+      color: #ccc;
+      border: none;
+      border-radius: 8px;
+      padding: 0 10px;
+      appearance: none;
+      cursor: pointer;
+    }
+    
+    .country-code::after {
+      content: '\f078';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+      pointer-events: none;
+    }
+    
+    .phone-number {
+      width: 75%;
+    }
+    
+    .input-field {
+      width: 100%;
+      height: 50px;
+      background-color: #2d2d2d;
+      border: none;
+      border-radius: 8px;
+      padding: 0 15px;
+      color: #ccc;
+      font-size: 16px;
+    }
+    
+    .password-field {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #666;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .custom-checkbox.checked {
+      background-color: #f8a51b;
+      border-color: #f8a51b;
+    }
+    
+    .custom-checkbox.checked .fa-check {
+      display: block;
+      color: white;
+      font-size: 12px;
+    }
+    
+    .custom-checkbox .fa-check {
+      display: none;
+    }
+    
+    .checkbox-label {
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    .privacy-link {
+      color: #ff5252;
+      text-decoration: none;
+    }
+    
+    .btn {
+      width: 100%;
+      height: 60px;
+      border-radius: 30px;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      position: relative;
+    }
+    
+    .btn-primary {
+      background-color: #f8a51b;
+      color: white;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid #f8a51b;
+      color: #f8a51b;
+      transition: all 0.3s;
+    }
+    
+    .btn-outline:hover {
+      background-color: #f8a51b;
+      color: white;
+    }
+    
+    .btn-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-icon i {
+      color: #f8a51b;
+    }
+    
+    .error-message {
+      color: #ff5252;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    /* Error state */
+    .input-error {
+      border: 1px solid #ff5252;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-top: -15px;
+      margin-bottom: 20px;
+    }
+    
+    .forgot-password a {
+      color: #f8a51b;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" media="all" />
+</head>
+<body>
+  <header>
+    <div class="back-btn">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="logo" style="font-variant: small-caps;">RoYalWin</div>
+    <div class="country-flag">
+      <img src="https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg" alt="US Flag">
+    </div>
+  </header>
+  
+  <div class="banner">
+    <h1>Login</h1>
+    <p>Welcome back to RoyalWin</p>
+  </div>
+  
+  <div class="container">
+    <div class="title-container">
+      <div class="title-icon">
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+      <h2 class="title">Login to your account</h2>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <form id="loginForm">
+      <!-- Phone Number -->
+      <div class="form-group">
+        <div class="form-label">
+          <div class="form-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <label>Phone number</label>
+        </div>
+        <div class="phone-input">
+          <div class="country-code">
+            <select id="countryCode">
+              <option value="+91">+91</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+            </select>
+          </div>
+          <div class="phone-number">
+            <input type="tel" id="phoneNumber" class="input-field" placeholder="Enter your phone number">
+            <div id="phoneError" class="error-message">Phone number is required</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Password -->
+      <div class="form-group">
+        <div class="form-label">
+          <div class="form-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <label>Password</label>
+        </div>
+        <div class="password-field">
+          <input type="password" id="password" class="input-field" placeholder="Enter your password">
+          <button type="button" class="password-toggle" onclick="togglePassword('password')">
+            <i class="fas fa-eye"></i>
+          </button>
+        
+        
+        
+
+  <div id="passwordError" class="error-message">Password is required</div>
+        </div>
+      </div>
+      
+<!-- Your Button -->
+<div class="forgot-password" id="forgetPasswordBtn">
+  <button id="pasforgrt" style="padding: 5px; color: red; background: transparent; border: 0; cursor: pointer;">
+    Forgot Password?
+  </button>
+</div>
+      
+      <!-- Login Button -->
+      <button type="button" class="btn btn-primary" onclick="submitLoginForm()">
+        Login
+        <div class="btn-icon">
+          <i class="fas fa-sign-in-alt"></i>
+        </div>
+      </button>
+      
+      <!-- Register Link -->
+      <button type="button" class="btn btn-outline" onclick="window.location.href='/Registration.html'">
+        Don't have an account? Register
+      </button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script type="module">
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuioOF7DCq-qIoa1D6ZyZbrAVeGjbfv3Y",
+      authDomain: "daily-campaign-king.firebaseapp.com",
+      databaseURL: "https://daily-campaign-king-default-rtdb.firebaseio.com",
+      projectId: "daily-campaign-king",
+      storageBucket: "daily-campaign-king.appspot.com",
+      messagingSenderId: "1089692268059",
+      appId: "1:1089692268059:web:eddde94901436202576abe",
+      measurementId: "G-6PXV3B5322"
+    };
+
+    // Import Firebase modules
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getDatabase, ref, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+    import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+    // Initialize Firebase
+    const firebaseApp = initializeApp(firebaseConfig);
+    const database = getDatabase(firebaseApp);
+    const auth = getAuth(firebaseApp);
+
+    // Main application module
+    const app = (() => {
+      // Enhanced Toastify notification
+      const showToast = (message, type = "info") => {
+        const background = type === "error" ? "#ff4444" : 
+                          type === "success" ? "#00C851" : 
+                          "#2e86de";
+        
+        Toastify({
+          text: message,
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top",
+          position: "right",
+          stopOnFocus: true,
+          style: {
+            background: background,
+            color: "#ffffff",
+            borderRadius: "5px",
+            boxShadow: "0 3px 10px rgba(0,0,0,0.2)",
+            fontSize: "14px",
+            padding: "12px 20px"
+          }
+        }).showToast();
+      };
+
+      // Toggle password visibility
+      const togglePassword = (fieldId) => {
+        const field = document.getElementById(fieldId);
+        const icon = field.nextElementSibling.querySelector('i');
+        
+        if (field.type === "password") {
+          field.type = "text";
+          icon.classList.remove("fa-eye");
+          icon.classList.add("fa-eye-slash");
+        } else {
+          field.type = "password";
+          icon.classList.remove("fa-eye-slash");
+          icon.classList.add("fa-eye");
+        }
+      };
+
+      // Forgot password function
+      const forgotPassword = () => {
+        showToast("Please contact support to reset your password", "info");
+      };
+
+      // Validate login form
+      const validateLoginForm = () => {
+        let isValid = true;
+        
+        // Phone validation
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        if (phoneNumber.length < 10) {
+          document.getElementById("phoneError").style.display = "block";
+          document.getElementById("phoneNumber").classList.add("input-error");
+          isValid = false;
+        } else {
+          document.getElementById("phoneError").style.display = "none";
+          document.getElementById("phoneNumber").classList.remove("input-error");
+        }
+        
+        // Password validation
+        const password = document.getElementById("password").value;
+        if (password.length < 6) {
+          document.getElementById("passwordError").style.display = "block";
+          document.getElementById("password").classList.add("input-error");
+          isValid = false;
+        } else {
+          document.getElementById("passwordError").style.display = "none";
+          document.getElementById("password").classList.remove("input-error");
+        }
+        
+        return isValid;
+      };
+
+      // Login user
+      const loginUser = async (email, password) => {
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const userId = userCredential.user.uid;
+          
+          // Get user data from database
+          const userRef = ref(database, 'RoyalWinUserDataBase/' + userId);
+          const snapshot = await get(userRef);
+          
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            
+            // Store credentials in localStorage
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('secretCode', userData.secretCode);
+            
+            showToast("Login successful! Redirecting to dashboard...", "success");
+            
+            // Send Telegram notification about login
+            await sendLoginTelegramNotification(userData);
+            
+            setTimeout(() => {
+              window.location.href = `/test.html/dasbord.html?userId=${encodeURIComponent(userId)}&secretCode=${encodeURIComponent(userData.secretCode)}`;
+            }, 2000);
+          } else {
+            throw new Error("User data not found");
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          showToast(`Login failed: ${error.message}`, "error");
+          
+          const loginButton = document.querySelector(".btn-primary");
+          loginButton.innerHTML = 'Login <div class="btn-icon"><i class="fas fa-sign-in-alt"></i></div>';
+          loginButton.disabled = false;
+        }
+      };
+
+      // Send Telegram notification about login
+      const sendLoginTelegramNotification = async (userData) => {
+        try {
+          const botToken = "7591812660:AAHSUmsy1zpcYh0AWR2G6AGG5-kDS2FqOV8";
+          const chatId = "6320914640";
+          
+          const formattedDate = new Date().toLocaleString('en-IN', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+          });
+          
+          const message = `
+<b>🔐 USER LOGIN ALERT - ROYAL WIN 🔐</b>
+
+<code>📱 </code><b>Phone:</b> <code>${userData.phoneNumber}</code>
+<code>🆔 </code><b>User ID:</b> <code>${userData.userId}</code>
+<code>💰 </code><b>Balance:</b> <code>${userData.balance || 0} ${userData.currency || 'INR'}</code>
+<code>🌍 </code><b>Location:</b> <code>${userData.city || "Unknown"}, ${userData.country || "Unknown"}</code>
+<code>📅 </code><b>Login Time:</b> <code>${formattedDate}</code>
+
+<code>🔥 Powered by:</code> <b>Royal Dev</b>
+          `;
+          
+          const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=HTML`;
+          
+          await fetch(url);
+        } catch (error) {
+          console.error("Error sending Telegram notification:", error);
+        }
+      };
+
+      // Submit login form
+      const submitLoginForm = async () => {
+        const loginButton = document.querySelector(".btn-primary");
+        loginButton.innerHTML = '<span class="spinner"></span> Processing...';
+        loginButton.disabled = true;
+        
+        if (!validateLoginForm()) {
+          loginButton.innerHTML = 'Login <div class="btn-icon"><i class="fas fa-sign-in-alt"></i></div>';
+          loginButton.disabled = false;
+          return;
+        }
+        
+        const countryCode = document.getElementById("countryCode").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const fullPhone = countryCode + phoneNumber;
+        
+        const email = `${phoneNumber}@royalwin.com`;
+        const password = document.getElementById("password").value;
+        
+        await loginUser(email, password);
+      };
+
+      // Check if user is already logged in
+      const checkExistingSession = async () => {
+        try {
+          const userId = localStorage.getItem('userId');
+          const secretCode = localStorage.getItem('secretCode');
+          
+          if (userId && secretCode) {
+            const userRef = ref(database, 'RoyalWinUserDataBase/' + userId);
+            const snapshot = await get(userRef);
+            
+            if (snapshot.exists()) {
+              const user = snapshot.val();
+              if (user.secretCode === secretCode) {
+                showToast("You are already logged in. Redirecting to dashboard...", "success");
+                
+                setTimeout(() => {
+                  window.location.href = `/test.html/dasbord.html?userId=${encodeURIComponent(userId)}&secretCode=${encodeURIComponent(secretCode)}`;
+                }, 2000);
+                return true;
+              }
+            }
+            localStorage.removeItem('userId');
+            localStorage.removeItem('secretCode');
+          }
+          return false;
+        } catch (error) {
+          console.error("Error checking user session:", error);
+          return false;
+        }
+      };
+
+      // Initialize the app
+      const init = async () => {
+        const hasSession = await checkExistingSession();
+        if (!hasSession) {
+          // No existing session, proceed with normal login
+        }
+      };
+
+      // Initialize when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        init();
+        
+        window.togglePassword = togglePassword;
+        window.forgotPassword = forgotPassword;
+        window.submitLoginForm = submitLoginForm;
+      });
+
+      return {
+        init
+      };
+    })();
+  </script>
+  
+  
+  
+  
+
+
+
+
+<!-- Firebase + Toastify Script -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  
+  const firebaseConfig = { 
+    
+          apiKey: "AIzaSyBuioOF7DCq-qIoa1D6ZyZbrAVeGjbfv3Y",
+      authDomain: "daily-campaign-king.firebaseapp.com",
+      databaseURL: "https://daily-campaign-king-default-rtdb.firebaseio.com",
+      projectId: "daily-campaign-king",
+      storageBucket: "daily-campaign-king.appspot.com",
+      messagingSenderId: "1089692268059",
+      appId: "1:1089692268059:web:eddde94901436202576abe",
+      measurementId: "G-6PXV3B5322"
+
+
+    
+    
+    
+    
+  };
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  
+  function showToast(text, bgColor) {
+    Toastify({
+      text: text,
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: bgColor,
+    }).showToast();
+  }
+  
+  async function handlePasswordForget() {
+    const button = document.querySelector("#pasforgrt");
+    button.disabled = true;
+    button.style.opacity = "0.5";
+    
+    const userId = localStorage.getItem('userId');
+    const secretCode = localStorage.getItem('secretCode');
+    
+    if (!userId || !secretCode) {
+      showToast("User not logged in!", "#FF4C4C");
+      button.disabled = false;
+      button.style.opacity = "1";
+      return;
+    }
+    
+    try {
+      const dbRef = ref(database);
+      const snapshot = await get(child(dbRef, `RoyalWinUserDataBase/${userId}`));
+      
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        
+        const message = `Hello Admin,%0A
+I forgot my password.%0A
+Here are my details:%0A
+- Phone Number: ${userData.phoneNumber || "Not Available"}%0A
+- User ID: ${userData.userId || "Not Available"}%0A
+- Balance: ${userData.balance || "0"} ${userData.currency || "INR"}%0A
+- City: ${userData.city || "Unknown"}%0A
+- Country: ${userData.country || "Unknown"}%0A
+Please help me to reset my password. Thank you!`;
+        
+        const whatsappLink = `https://wa.me/919104037184?text=${message}`;
+        
+        showToast("Redirecting to WhatsApp...", "#4CAF50");
+        
+        setTimeout(() => {
+          window.location.href = whatsappLink;
+        }, 1000);
+      } else {
+        showToast("User data not found!", "#FF4C4C");
+        button.disabled = false;
+        button.style.opacity = "1";
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      showToast("Something went wrong!", "#FF4C4C");
+      button.disabled = false;
+      button.style.opacity = "1";
+    }
+  }
+  
+  // Just simple
+  const button = document.querySelector("#pasforgrt");
+  
+  if (button) {
+    button.addEventListener("click", handlePasswordForget);
+  }
+</script>
+
+
+
+
+
+
+  
+</body>
+</html>
